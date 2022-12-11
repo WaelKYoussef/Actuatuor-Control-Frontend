@@ -1,0 +1,106 @@
+<mat-card class="container">
+
+  <div class="title">Operation Mode</div>
+
+  <div class="centeredContainer">The operation mode is currently set to:</div>
+  <div class="centeredContainer" *ngIf="api.settings.operation == 0" style="color: blueviolet; font-size: 18pt; margin: 10pt">Manual Operation</div>
+  <div class="centeredContainer" *ngIf="api.settings.operation == 1" style="color: brown; font-size: 18pt; margin: 10pt">Time Based Operation</div>
+
+  <div class="centeredContainer">
+    <button
+      mat-button
+      class="shadow operationButton"
+      *ngIf="api.settings.operation == 1"
+      (click)="api.setOperation(0)">Set to Manual</button>
+
+    <button
+      mat-button
+      class="shadow operationButton"
+      *ngIf="api.settings.operation == 0"
+      (click)="api.setOperation(1)">Set to Time-Based</button>
+  </div>
+
+  <ng-container *ngIf="api.settings.operation == 0">
+
+    <div class="line" style="margin-bottom: 20pt"></div>
+
+    <div class="centeredContainer">
+      <mat-form-field appearance="fill" style="width: 40%">
+        <mat-label>Manual state</mat-label>
+        <mat-select [value]="api.settings.manualStateAsString" (selectionChange)="onManualChange($event.value)">
+          <mat-option *ngFor="let state of states" value="{{state}}">{{state}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="centeredContainer">
+      <mat-form-field class="example-full-width">
+        <mat-label>Timezone</mat-label>
+        <input #TimeZoneField matInput placeholder="Ex. 'Africa/Cairo'" value="{{api.settings.timezone}}">
+      </mat-form-field>
+    </div>
+    <div class="centeredContainer" style="margin-top: -20pt">
+      <button
+        mat-button
+        [disabled] = "TimeZoneField.value == api.settings.timezone"
+        class="shadow operationButton"
+        (click)="api.setTimeZone(TimeZoneField.value)"
+        [ngStyle]="{background: TimeZoneField.value == api.settings.timezone ? 'lightGrey' : 'lightBlue'}">Update Timezone</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="api.settings.operation == 1">
+
+    <div class="line" style="margin-bottom: 20pt"></div>
+
+    <div class="title">Time Items</div>
+
+    <div class="centeredContainer">
+      <button
+        mat-button
+        class="shadow operationButton"
+        (click)="addEvent.emit()">Add time item</button>
+    </div>
+
+    <table mat-table [dataSource]="api.timeItems" class="shadow">
+
+<!--      <ng-container matColumnDef="id">-->
+<!--        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>-->
+<!--        <mat-cell class="duration-cell" *matCellDef="let item">{{item.id}}</mat-cell>-->
+<!--      </ng-container>-->
+
+      <ng-container matColumnDef="from">
+        <mat-header-cell *matHeaderCellDef>FROM</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let item">{{item.from}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="to">
+        <mat-header-cell *matHeaderCellDef>TO</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let item">{{item.to}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let item">{{item.stateString}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let item">
+          <button class="shadow deleteButton" (click)="api.deleteTimeItem(item.id)">X</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['from', 'to', 'state', 'delete']"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: ['from', 'to', 'state', 'delete']"></mat-row>
+
+    </table>
+
+  </ng-container>
+
+</mat-card>
+
+<div style="height: 100pt;"></div>

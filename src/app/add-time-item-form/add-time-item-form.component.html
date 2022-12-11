@@ -1,0 +1,59 @@
+
+
+<mat-card class="container">
+  <div class="title">Select From Time</div>
+
+  <div class="centeredContainer">
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>From Hour</mat-label>
+      <mat-select [(value)]="selectedFromHour">
+        <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>From Minute</mat-label>
+      <mat-select [(value)]="selectedFromMinute">
+        <mat-option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="title">Select To Time</div>
+
+  <div class="centeredContainer">
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>To Hour</mat-label>
+      <mat-select [(value)]="selectedToHour">
+        <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>To Minute</mat-label>
+      <mat-select [(value)]="selectedToMinute">
+        <mat-option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="title">Select State</div>
+
+  <div class="centeredContainer">
+    <mat-form-field appearance="fill" style="width: 40%">
+      <mat-label>State</mat-label>
+      <mat-select [(value)]="selectedState">
+        <mat-option *ngFor="let state of states" value="{{state}}">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="centeredContainer">
+    <button mat-button class="closeButton" (click)="submit()" style="color: green !important;">Submit</button>
+    <button mat-button class="closeButton" (click)="closeEvent.emit()" style="color: red !important;">Cancel</button>
+  </div>
+
+</mat-card>
+
+<div style="height: 100pt;"></div>
