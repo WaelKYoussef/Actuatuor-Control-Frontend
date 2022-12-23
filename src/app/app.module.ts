@@ -11,12 +11,15 @@ import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
+import { AdvancedTimeSettingFormComponent } from './advanced-time-setting-form/advanced-time-setting-form.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     PanelComponent,
-    AddTimeItemFormComponent
+    AddTimeItemFormComponent,
+    AdvancedTimeSettingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

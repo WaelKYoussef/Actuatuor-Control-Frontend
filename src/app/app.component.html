@@ -1,9 +1,12 @@
-<app-panel
-  *ngIf="showForm == false"
-  (addEvent)="showForm = true">
+<app-panel *ngIf="page == 0"
+           (addEvent)="page = 1"
+           (advancedSetEvent)="page = 2">
 </app-panel>
 
-<app-add-time-item-form
-  *ngIf="showForm"
-  (closeEvent)="showForm = false">
+<app-add-time-item-form *ngIf="page == 1"
+                        (closeEvent)="page = 0">
 </app-add-time-item-form>
+
+<app-advanced-time-setting-form *ngIf="page == 2"
+                                (closeEvent)="page = 0">
+</app-advanced-time-setting-form>

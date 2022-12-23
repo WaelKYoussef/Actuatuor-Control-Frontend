@@ -1,0 +1,25 @@
+
+
+<mat-card class="container">
+  <div class="title">Advanced Time Setting</div>
+
+  <a>Enter each item separately in a new line</a>
+  <a>Warning, this will replace ALL time items in the table</a>
+  <a>The format is 'HH:MM:SS S'</a>
+  <a>HH is the 24-Hour hour</a>
+  <a>MM is minutes</a>
+  <a>SS is seconds</a>
+  <a>S is the state; 'o', 'e' or 'c' , (off, expand, contract respectively)</a>
+  <textarea class="textArea"
+            rows="30"
+            [(ngModel)]="data"
+            placeholder="HH:MM:SS S, e.g. 13:30:23 e(each item in new line)"></textarea>
+
+  <div class="centeredContainer">
+    <button mat-button class="closeButton" (click)="submit()" style="color: green !important;">Submit</button>
+    <button mat-button class="closeButton" (click)="closeEvent.emit()" style="color: red !important;">Cancel</button>
+  </div>
+
+</mat-card>
+
+<div style="height: 100pt;"></div>

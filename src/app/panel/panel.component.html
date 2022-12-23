@@ -62,6 +62,11 @@
         mat-button
         class="shadow operationButton"
         (click)="addEvent.emit()">Add time item</button>
+
+      <button
+        mat-button
+        class="shadow operationButton"
+        (click)="advancedSetEvent.emit()">Advanced time table setting</button>
     </div>
 
     <table mat-table [dataSource]="api.timeItems" class="shadow">

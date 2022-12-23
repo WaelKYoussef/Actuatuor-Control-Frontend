@@ -15,6 +15,10 @@ export class TimeItem {
     }
   }
 
+  public get stateCodeString(): string {
+    return this.stateString[0];
+  }
+
   public get stateString(): string {
     switch(this.state) {
       case State.contract: return 'contract';

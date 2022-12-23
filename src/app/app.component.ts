@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+enum AppPage {
+  main,
+  addTimeForm,
+  advancedTimeForm
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +14,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Control';
 
-  showForm = false;
-
+  page: AppPage = AppPage.main
 }

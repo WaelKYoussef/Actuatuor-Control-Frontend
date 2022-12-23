@@ -17,6 +17,13 @@
         <mat-option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>From Second</mat-label>
+      <mat-select [(value)]="selectedFromSecond">
+        <mat-option *ngFor="let second of seconds" value="{{second}}">{{second}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
 
@@ -34,6 +41,13 @@
       <mat-label>To Minute</mat-label>
       <mat-select [(value)]="selectedToMinute">
         <mat-option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="timeField">
+      <mat-label>From Second</mat-label>
+      <mat-select [(value)]="selectedToSecond">
+        <mat-option *ngFor="let second of seconds" value="{{second}}">{{second}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

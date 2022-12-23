@@ -12,6 +12,7 @@ import {State} from "../Models/state";
 export class PanelComponent implements OnInit {
 
   @Output() addEvent: EventEmitter<null> = new EventEmitter()
+  @Output() advancedSetEvent: EventEmitter<null> = new EventEmitter()
   @ViewChild(Input) TimeZoneField: any
 
   settings: Settings = new Settings(Operation.manual, State.off, 'Africa/Cairo')

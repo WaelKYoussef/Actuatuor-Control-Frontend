@@ -10,10 +10,15 @@ import {State} from "../Models/state";
 export class Api2Service {
 
   // private server = 'http://192.168.1.5/Control/';
+  // private server = 'http://localhost/Control/';
   private server = 'http://' + window.location.hostname + '/Control/';
 
   public settings: Settings = new Settings(Operation.manual, State.off, 'Africa/Cairo');
   public timeItems: Array<TimeItem> = [];
+
+  get advancedTimeItems(): string {
+    return this.timeItems.map((i) => i.from + ' ' + i.to + ' ' + i.stateString ).join('\n')
+  }
 
   constructor() {
     this.getSettings(()=>{});
@@ -68,6 +73,12 @@ export class Api2Service {
     else if (state == State.expand)
       value = 'expand';
     this.sendRequest('AddTimeTableItem', {'from': from, 'to': to, 'state': value  }, () => {
+      this.getTimeTableItems(()=>{})
+    });
+  }
+
+  setTimeItems(data: Array<any>) {
+    this.sendRequest('SetTimeTable', {'items': data }, () => {
       this.getTimeTableItems(()=>{})
     });
   }
